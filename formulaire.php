@@ -13,7 +13,7 @@
         }
 
         .container {
-            width: 600px;
+            width: 1200px;
             margin: 50px auto;
             padding: 20px;
             background: white;
@@ -33,7 +33,7 @@
         }
 
         input, select {
-            width: 100%;
+            width: 95%;
             padding: 10px;
             margin-bottom: 15px;
             border: 1px solid #ccc;
@@ -42,21 +42,26 @@
 
         .gender {
             margin-bottom: 15px;
+            display: flex;
+            align-items: center;
         }
 
-        .gender input[type="radio"] {
-            margin-right: 8px;
+        .gender label {
+            margin-right: 500px;
+            font-weight: normal;
         }
 
         button {
-            width: 100%;
-            padding: 15px;
+            padding: 20px;
             background-color: #4CAF50;
             color: white;
             border: none;
             border-radius: 4px;
             font-size: 16px;
             cursor: pointer;
+            display: block;
+            margin: 0 auto; 
+            align-items: center 
         }
 
         button:hover {
@@ -95,24 +100,6 @@
             <label for="confirm-password">Vérifier le mot de passe</label>
             <input type="password" id="confirm-password" name="confirm-password" required>
 
-            <!-- Category Selection from Database -->
-            <label for="category">Catégorie</label>
-            <select id="category" name="category" required>
-                <?php
-                    include("connexion.php");
-
-                    $Req = "SELECT * FROM categorie";
-                    $Res = mysqli_query($conn, $Req);
-
-                    if ($Res) {
-                        while ($Row = mysqli_fetch_array($Res)) {
-                            echo "<option value='{$Row[0]}'>{$Row[1]}</option>";
-                        }
-                    } else {
-                        echo "<option disabled>Erreur de chargement des catégories</option>";
-                    }
-                ?>
-            </select>
 
             <button type="submit">S'inscrire</button>
         </form>
