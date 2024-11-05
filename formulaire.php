@@ -51,33 +51,58 @@
             font-weight: normal;
         }
 
-        button {
-            padding: 20px;
+        .buttons {
+            text-align: center;
+        }
+
+        .buttons button {
+            padding: 15px 30px;
             background-color: #4CAF50;
             color: white;
             border: none;
             border-radius: 4px;
             font-size: 16px;
             cursor: pointer;
-            display: block;
-            margin: 0 auto; 
-            align-items: center 
+            margin: 10px;
         }
 
-        button:hover {
+        .buttons button:hover {
             background-color: #45a049;
         }
+
+        .secondary-button {
+            background-color: #ddd;
+            color: #333;
+        }
+
+        .secondary-button:hover {
+            background-color: #ccc;
+        }
     </style>
+    <script>
+        function validateForm() {
+            const password = document.getElementById("password").value;
+            const confirmPassword = document.getElementById("confirm-password").value;
+            if (password !== confirmPassword) {
+                alert("Les mots de passe ne correspondent pas.");
+                return false;
+            }
+            return true;
+        }
+    </script>
 </head>
 <body>
     <div class="container">
         <h2>Créer un compte</h2>
-        <form action="register.php" method="POST">
+        <form action="insertutilisat.php" method="POST" onsubmit="return validateForm()">
             <label for="first-name">Prénom</label>
             <input type="text" id="first-name" name="first-name" required>
 
             <label for="last-name">Nom</label>
             <input type="text" id="last-name" name="last-name" required>
+
+            <label for="email">Email</label>
+            <input type="email" id="email" name="email" required>
 
             <label for="address">Adresse</label>
             <input type="text" id="address" name="address" required>
@@ -100,8 +125,10 @@
             <label for="confirm-password">Vérifier le mot de passe</label>
             <input type="password" id="confirm-password" name="confirm-password" required>
 
-
-            <button type="submit">S'inscrire</button>
+            <div class="buttons">
+                <button type="submit">S'inscrire</button>
+                <button type="button" class="secondary-button" onclick="window.location.href='login.php'">Vous avez déjà un compte ?</button>
+            </div>
         </form>
     </div>
 </body>
