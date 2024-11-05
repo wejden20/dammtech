@@ -1,10 +1,7 @@
 <?php
-// Include the database connection file
 require_once('connection.php');
 
-// Check if the form has been submitted
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    // Retrieve and sanitize input
     $email = mysqli_real_escape_string($conn, $_POST['email']);
     $password = $_POST['password'];
 
