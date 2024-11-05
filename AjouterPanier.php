@@ -27,6 +27,15 @@
       border-radius: 10px;
       padding: 20px;
       box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      position: relative;
+    }
+
+    .cart-empty-message {
+      display: none; /* Caché par défaut */
+      text-align: center;
+      font-size: 18px;
+      color: #888;
+      margin-top: 20px;
     }
 
     .cart-summary {
@@ -142,9 +151,8 @@
 <div class="cart-container">
   <!-- Cart Details Section -->
   <div class="cart-details">
-    <h2>Votre Panier </h2>
-    <div class="cart-item">
-      <!-- Placeholder for Image -->
+    <h2>Votre Panier</h2>
+    <div id="cart-item" class="cart-item">
       <img src="" alt="Product Image">
       <div class="cart-item-details">
         <div class="cart-item-info">
@@ -156,7 +164,12 @@
           <input type="number" id="quantity" value="1" min="0">
         </div>
       </div>
-      <div class="trash-icon" onclick="resetQuantity()">🗑️</div>
+      <div class="trash-icon" onclick="removeCartItem()">🗑️</div>
+    </div>
+
+    <!-- Message de panier vide -->
+    <div id="empty-message" class="cart-empty-message">
+      Votre panier est vide.
     </div>
   </div>
 
@@ -175,9 +188,13 @@
 </div>
 
 <script>
-  function resetQuantity() {
-    document.getElementById("quantity").value = 0;
+  function removeCartItem() {
+    const cartItem = document.getElementById("cart-item");
+    cartItem.remove(); // Supprime l'élément du panier
+
+    // Met à jour le prix total et affiche le message de panier vide
     document.getElementById("total-price").textContent = "0Dt";
+    document.getElementById("empty-message").style.display = "block";
   }
 </script>
 
